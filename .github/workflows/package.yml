@@ -24,8 +24,7 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
-      - name: Build containers
-      - name: Run docker-compose up
+      - name: Run application
         run: |
           docker compose -f docker-compose.yml up -d
           echo "Waiting for service on localhost:80..."
