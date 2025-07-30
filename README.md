@@ -1,43 +1,25 @@
-# H5Radar Ansible Installer
+# H5Radar Docker Compose
 
-This repository contains Ansible playbooks and provisioning scripts to install and deploy the H5Radar platform.
+This repository contains a Docker Compose configuration to run the full H5Radar application locally or in a test environment.
 
 H5Radar application consists of several modules. For an overview of the entire platform and its repositories, please see the [organization-level README](https://github.com/h5radar).
 
 ## Features
 
-- Automated deployment of H5Radar web UI and backend services
-- Configuration of SSL certificates (self-signed or Let's Encrypt)
-- Support for reverse proxy setup (Nginx or Apache)
-- Customizable inventory and environment parameters for flexible deployments
+- One-command startup for H5Radar demo or development instance
+- Includes all major modules (UI, Radar backend, Account backend)
+- Works on macOS, Linux, and Windows with Docker
+- No manual configuration required
 
-## How to install application
+## How to run application
 
-There are a few ways to install the application. The main difference relates to SSL certification: self-signed, Let's Encrypt, or external files.
+The easiest way to run H5Radar is via Docker Compose. This method is ideal for quick local evaluation.
 
-## Requirements
+```bash
+docker-compose up -d
+```
 
-- Ansible 2.9 or higher
-- Target machines accessible via SSH with appropriate permissions
-- DNS and network configuration depending on SSL setup
-
-### Self-signed certificates
-
-- Copy `inventory/development/` files to `inventory/production/`
-- Edit `inventory/production/hosts` to set up IP addresses
-- Run the command:
-   ```bash
-   ansible-playbook -v --diff --inventory inventory/production main.yml
-   ```
-### Let's Encrypt certificates
-
-- TODO: Configure public IP and DNS settings required for Let's Encrypt
-- Copy `inventory/development/` files to `inventory/production/`
-- Edit `inventory/production/hosts` to set up IP addresses
-- Run the command:
-   ```bash
-   ansible-playbook -v --diff --inventory inventory/production main.yml
-   ```
+TYou can then open http://localhost:3000 in your browser.
 
 ## Resources
 
