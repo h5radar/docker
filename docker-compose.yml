@@ -1,0 +1,42 @@
+---
+services:
+  api:
+    image: h5radar/api:latest
+    container_name: h5radar-api
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgres://h5radar:h5radar@db:5432/h5radar
+    depends_on:
+      - db
+
+  ui:
+    image: h5radar/app-ui:latest
+    container_name: h5radar-ui
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+  auth:
+    image: h5radar/account:latest
+    container_name: h5radar-auth
+    ports:
+      - "9000:9000"
+    environment:
+      - DATABASE_URL=postgres://h5radar:h5radar@db:5432/h5radar
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: h5radar-db
+    environment:
+      POSTGRES_USER: h5radar
+      POSTGRES_PASSWORD: h5radar
+      POSTGRES_DB: h5radar
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
