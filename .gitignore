@@ -1,0 +1,5 @@
+# Ignore some files
+.idea
+.cache
+*.retry
+.venv/
