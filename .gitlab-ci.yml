@@ -1,0 +1,38 @@
+# Setup cache
+cache:
+  untracked: true
+
+# Setup stages
+stages:
+  - lint
+  - build
+  - test
+
+# Run linters
+lint-yamllint:
+  stage: lint
+  tags:
+    - linux
+  script:
+    - yamllint docker-compose.yml
+
+# Build artifacts
+build-application:
+  stage: build
+  tags:
+    - linux
+  script:
+    - git rev-parse HEAD > VERSION
+  artifacts:
+    name: artifacts
+    expire_in: 1 week
+    paths:
+      - VERSION
+
+# Run all tests
+test-application:
+  stage: test
+  tags:
+    - linux
+  script:
+    - docker-compose -f docker-compose.yml build

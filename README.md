@@ -35,3 +35,6 @@ Contributions and issues are welcome. Please open pull requests or issues in thi
 ## License
 
 H5Radar Ansible Installer is licensed under the MIT License.
+
+# Appendix 1: Useful commands
+* run server by command: npx http-server ./dist -o -c-1
