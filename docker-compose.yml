@@ -1,7 +1,17 @@
 ---
 services:
-  app:
+  web:
     image: ghcr.io/h5radar/web:latest
     container_name: h5radar-web
     ports:
       - "80:80"
+  account:
+    image: ghcr.io/h5radar/account:latest
+    container_name: h5radar-account
+    ports:
+      - "8070:8070"
+  radar:
+    image: ghcr.io/h5radar/radar:latest
+    container_name: h5radar-radar
+    ports:
+      - "8080:8080"
