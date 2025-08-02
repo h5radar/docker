@@ -1,7 +1,7 @@
 #
 # Package (build and test) application
 #
-name: Package application
+name: Package Application
 
 on:
   push:
@@ -24,5 +24,14 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
-      - name: Build containers
-        run: docker compose -f docker-compose.yml build
+      - name: Run application
+        run: |
+          docker compose -f docker-compose.yml up -d
+          echo "Waiting for service on localhost:80..."
+          for i in {1..60}; do
+            nc -z localhost 80 && break
+            echo "Still waiting..."
+            sleep 1
+          done
+          docker compose ps
+        timeout-minutes: 3
