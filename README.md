@@ -36,6 +36,6 @@ Contributions and issues are welcome. Please open pull requests or issues in thi
 
 H5Radar Ansible Installer is licensed under the MIT License.
 
-# Appendix 1: Useful commands
+## Appendix 1: Useful commands
 
 - docker compose by command: docker compose up -d
